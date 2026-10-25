@@ -1,0 +1,18 @@
+{
+  "name": "iOS 18 Sandbox for Android (Сравнение ОС)",
+  "short_name": "iOS Sandbox",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "Интерактивная песочница интерфейса и жестов iOS для демонстрации сравнения операционных систем Android и iOS",
+  "icons": [
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

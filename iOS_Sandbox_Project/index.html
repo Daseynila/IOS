@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#000000">
+  <title>iOS 18 Sandbox for Android — Сравнение ОС</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Mockup frame on desktop, 100% full screen on mobile -->
+  <div id="device-wrapper">
+    <div id="iphone-screen">
+
+      <!-- DYNAMIC ISLAND -->
+      <div id="dynamic-island" class="island-compact">
+        <div class="island-content-compact">
+          <div class="island-left">
+            <i class="fa-solid fa-music music-note-icon"></i>
+            <span class="island-pill-dot"></span>
+          </div>
+          <div class="island-right">
+            <div class="sound-wave">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+        <div class="island-content-expanded">
+          <div class="island-expanded-top">
+            <div class="island-art">
+              <i class="fa-solid fa-compact-disc"></i>
+            </div>
+            <div class="island-track-info">
+              <div class="island-title">iOS vs Android Symphony</div>
+              <div class="island-artist">Apple HIG & Material You</div>
+            </div>
+            <div class="island-wave-large">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="island-progress-bar">
+            <div class="island-progress-fill"></div>
+          </div>
+          <div class="island-controls">
+            <button class="island-btn"><i class="fa-solid fa-backward-step"></i></button>
+            <button class="island-btn play-btn" id="island-play-toggle"><i class="fa-solid fa-pause"></i></button>
+            <button class="island-btn"><i class="fa-solid fa-forward-step"></i></button>
+            <button class="island-btn airplay-btn"><i class="fa-solid fa-satellite-dish"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATUS BAR -->
+      <header id="status-bar">
+        <div class="status-left">
+          <span id="status-time">09:41</span>
+        </div>
+        <div class="status-right" id="status-right-trigger" title="Потяните вниз для Центра Управления">
+          <i class="fa-solid fa-signal"></i>
+          <span class="net-text">5G</span>
+          <i class="fa-solid fa-wifi"></i>
+          <div class="battery-icon">
+            <div class="battery-level"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- SCREEN 1: LOCK SCREEN -->
+      <section id="lock-screen" class="os-screen active">
+        <div class="lock-top">
+          <div class="face-id-icon">
+            <i class="fa-solid fa-lock" id="lock-glyph"></i>
+          </div>
+          <div class="lock-date" id="lock-date">Воскресенье, 25 октября</div>
+          <div class="lock-time" id="lock-time">09:41</div>
+        </div>
+
+        <div class="lock-widgets">
+          <div class="lock-widget-pill">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <span>+18° Новосибирск</span>
+          </div>
+          <div class="lock-widget-pill">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Sandbox Secure</span>
+          </div>
+        </div>
+
+        <!-- Lockscreen Notification -->
+        <div class="lock-notification">
+          <div class="notif-header">
+            <div class="notif-app-icon"><i class="fa-brands fa-apple"></i></div>
+            <span class="notif-app-title">СИСТЕМА СРАВНЕНИЯ ОС</span>
+            <span class="notif-time">сейчас</span>
+          </div>
+          <div class="notif-body">
+            <strong>Песочница iOS активна на Android</strong>
+            <p>Проект студента Юсупова О. К. Смахните вверх для демонстрации интерфейса.</p>
+          </div>
+        </div>
+
+        <div class="lock-bottom">
+          <button class="circle-tool-btn" id="lock-flashlight-btn">
+            <i class="fa-solid fa-flashlight"></i>
+          </button>
+          <div class="swipe-hint">
+            <div class="home-indicator mini"></div>
+            <span>Смахните вверх для разблокировки</span>
+          </div>
+          <button class="circle-tool-btn" id="lock-camera-btn">
+            <i class="fa-solid fa-camera"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: HOME SCREEN (SPRINGBOARD) -->
+      <section id="home-screen" class="os-screen">
+        <div class="home-content">
+          
+          <!-- Widgets Row -->
+          <div class="widgets-row">
+            <!-- Weather Widget -->
+            <div class="ios-widget weather-widget">
+              <div class="widget-city">Новосибирск</div>
+              <div class="widget-temp">+18°</div>
+              <div class="widget-condition"><i class="fa-solid fa-sun"></i> Ясно</div>
+              <div class="widget-hilo">Макс.: +20°, мин.: +11°</div>
+            </div>
+            <!-- Comparison OS Quick Widget -->
+            <div class="ios-widget compare-widget" id="open-compare-widget">
+              <div class="widget-title">
+                <i class="fa-solid fa-scale-balanced"></i> Сравнение ОС
+              </div>
+              <div class="compare-metric-row">
+                <span>iOS (HIG)</span>
+                <div class="mini-bar"><div class="mini-bar-fill ios" style="width: 85%;"></div></div>
+              </div>
+              <div class="compare-metric-row">
+                <span>Android (M3)</span>
+                <div class="mini-bar"><div class="mini-bar-fill android" style="width: 90%;"></div></div>
+              </div>
+              <div class="widget-footnote">Нажмите для анализа</div>
+            </div>
+          </div>
+
+          <!-- Apps Grid -->
+          <div class="app-grid">
+            <div class="app-item" data-app="calculator">
+              <div class="app-icon icon-calculator"><i class="fa-solid fa-calculator"></i></div>
+              <span class="app-name">Калькулятор</span>
+            </div>
+            <div class="app-item" data-app="settings">
+              <div class="app-icon icon-settings"><i class="fa-solid fa-gear"></i></div>
+              <span class="app-name">Настройки</span>
+            </div>
+            <div class="app-item" data-app="compare">
+              <div class="app-icon icon-compare"><i class="fa-solid fa-code-compare"></i></div>
+              <span class="app-name">Сравнение ОС</span>
+            </div>
+            <div class="app-item" data-app="notes">
+              <div class="app-icon icon-notes"><i class="fa-solid fa-note-sticky"></i></div>
+              <span class="app-name">Заметки</span>
+            </div>
+            <div class="app-item" data-app="quiz">
+              <div class="app-icon icon-quiz"><i class="fa-solid fa-circle-question"></i></div>
+              <span class="app-name">Тест: Выбор ОС</span>
+            </div>
+            <div class="app-item" data-app="camera">
+              <div class="app-icon icon-camera"><i class="fa-solid fa-camera"></i></div>
+              <span class="app-name">Камера</span>
+            </div>
+            <div class="app-item" data-app="browser">
+              <div class="app-icon icon-safari"><i class="fa-brands fa-safari"></i></div>
+              <span class="app-name">Safari</span>
+            </div>
+            <div class="app-item" data-app="appstore">
+              <div class="app-icon icon-appstore"><i class="fa-brands fa-app-store-ios"></i></div>
+              <span class="app-name">App Store</span>
+            </div>
+          </div>
+
+          <!-- Page Indicator dots -->
+          <div class="page-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+          </div>
+
+        </div>
+
+        <!-- Frosted Glass Dock -->
+        <div id="dock-bar">
+          <div class="app-item" data-app="phone">
+            <div class="app-icon icon-phone"><i class="fa-solid fa-phone"></i></div>
+          </div>
+          <div class="app-item" data-app="browser">
+            <div class="app-icon icon-safari"><i class="fa-brands fa-safari"></i></div>
+          </div>
+          <div class="app-item" data-app="messages">
+            <div class="app-icon icon-messages"><i class="fa-solid fa-comment"></i></div>
+          </div>
+          <div class="app-item" data-app="music">
+            <div class="app-icon icon-music"><i class="fa-solid fa-music"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTROL CENTER (ШТОРКА) -->
+      <div id="control-center">
+        <div class="cc-header">
+          <span>Центр управления</span>
+          <button id="close-cc-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cc-grid">
+          <!-- Connectivity 2x2 box -->
+          <div class="cc-card cc-conn-box">
+            <button class="cc-tile active" id="btn-airplane"><i class="fa-solid fa-plane"></i></button>
+            <button class="cc-tile active" id="btn-cellular"><i class="fa-solid fa-tower-broadcast"></i></button>
+            <button class="cc-tile active" id="btn-wifi"><i class="fa-solid fa-wifi"></i></button>
+            <button class="cc-tile active" id="btn-bluetooth"><i class="fa-brands fa-bluetooth-b"></i></button>
+          </div>
+
+          <!-- Music Player Card -->
+          <div class="cc-card cc-media-card">
+            <div class="media-title">Аудиосистема</div>
+            <div class="media-sub">iOS Sound Engine</div>
+            <div class="media-controls">
+              <i class="fa-solid fa-backward"></i>
+              <i class="fa-solid fa-play" id="cc-play-btn"></i>
+              <i class="fa-solid fa-forward"></i>
+            </div>
+          </div>
+
+          <!-- Vertical Sliders -->
+          <div class="cc-sliders-row">
+            <!-- Brightness Slider -->
+            <div class="cc-vertical-slider-container">
+              <div class="cc-vertical-slider" id="slider-brightness">
+                <div class="slider-fill" style="height: 80%;"></div>
+                <i class="fa-solid fa-sun slider-icon"></i>
+              </div>
+              <span class="slider-label">Яркость</span>
+            </div>
+            <!-- Volume Slider -->
+            <div class="cc-vertical-slider-container">
+              <div class="cc-vertical-slider" id="slider-volume">
+                <div class="slider-fill" style="height: 65%;"></div>
+                <i class="fa-solid fa-volume-high slider-icon"></i>
+              </div>
+              <span class="slider-label">Громкость</span>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="cc-quick-grid">
+            <button class="cc-tile" id="cc-torch"><i class="fa-solid fa-flashlight"></i></button>
+            <button class="cc-tile" id="cc-calc"><i class="fa-solid fa-calculator"></i></button>
+            <button class="cc-tile" id="cc-timer"><i class="fa-solid fa-stopwatch"></i></button>
+            <button class="cc-tile" id="cc-battery"><i class="fa-solid fa-battery-half"></i></button>
+          </div>
+
+          <!-- Compare Mode Button inside CC -->
+          <div class="cc-full-btn" id="cc-open-compare">
+            <i class="fa-solid fa-layer-group"></i> Сравнить элементы с Android
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== APPS CONTAINERS ==================== -->
+
+      <!-- APP 1: CALCULATOR -->
+      <div id="app-calculator" class="ios-app-window">
+        <div class="app-nav-bar transparent">
+          <button class="app-back-btn"><i class="fa-solid fa-chevron-left"></i> Назад</button>
+          <span class="app-title"></span>
+        </div>
+        <div class="calc-screen">
+          <div id="calc-display">0</div>
+        </div>
+        <div class="calc-keypad">
+          <button class="calc-btn fn" data-op="clear">AC</button>
+          <button class="calc-btn fn" data-op="plusminus">±</button>
+          <button class="calc-btn fn" data-op="percent">%</button>
+          <button class="calc-btn op" data-op="/">÷</button>
+
+          <button class="calc-btn num" data-num="7">7</button>
+          <button class="calc-btn num" data-num="8">8</button>
+          <button class="calc-btn num" data-num="9">9</button>
+          <button class="calc-btn op" data-op="*">×</button>
+
+          <button class="calc-btn num" data-num="4">4</button>
+          <button class="calc-btn num" data-num="5">5</button>
+          <button class="calc-btn num" data-num="6">6</button>
+          <button class="calc-btn op" data-op="-">−</button>
+
+          <button class="calc-btn num" data-num="1">1</button>
+          <button class="calc-btn num" data-num="2">2</button>
+          <button class="calc-btn num" data-num="3">3</button>
+          <button class="calc-btn op" data-op="+">+</button>
+
+          <button class="calc-btn num zero" data-num="0">0</button>
+          <button class="calc-btn num" data-num=".">,</button>
+          <button class="calc-btn op" data-op="=">=</button>
+        </div>
+      </div>
+
+      <!-- APP 2: SETTINGS -->
+      <div id="app-settings" class="ios-app-window">
+        <div class="app-nav-bar">
+          <button class="app-back-btn"><i class="fa-solid fa-chevron-left"></i> Назад</button>
+          <span class="app-title">Настройки</span>
+        </div>
+        <div class="settings-content">
+          <!-- Profile Card -->
+          <div class="settings-group profile-group">
+            <div class="settings-row profile-row">
+              <div class="avatar-circle">ЮО</div>
+              <div class="profile-info">
+                <div class="profile-name">Юсупов Оятуллох</div>
+                <div class="profile-sub">Apple ID, iCloud, Проект 100/1</div>
+              </div>
+              <i class="fa-solid fa-chevron-right chevron"></i>
+            </div>
+          </div>
+
+          <!-- Group 1 -->
+          <div class="settings-group">
+            <div class="settings-row">
+              <div class="row-icon bg-orange"><i class="fa-solid fa-plane"></i></div>
+              <span class="row-label">Авиарежим</span>
+              <label class="ios-switch">
+                <input type="checkbox" id="sett-plane">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="settings-row">
+              <div class="row-icon bg-blue"><i class="fa-solid fa-wifi"></i></div>
+              <span class="row-label">Wi-Fi</span>
+              <span class="row-value">Nirhalla_5G</span>
+              <i class="fa-solid fa-chevron-right chevron"></i>
+            </div>
+            <div class="settings-row">
+              <div class="row-icon bg-blue"><i class="fa-brands fa-bluetooth-b"></i></div>
+              <span class="row-label">Bluetooth</span>
+              <span class="row-value">Вкл.</span>
+              <i class="fa-solid fa-chevron-right chevron"></i>
+            </div>
+          </div>
+
+          <!-- Group 2: About System -->
+          <div class="settings-group">
+            <div class="settings-row" id="open-about-row">
+              <div class="row-icon bg-gray"><i class="fa-solid fa-circle-info"></i></div>
+              <span class="row-label">Об этом устройстве</span>
+              <span class="row-value">iPhone 16 Pro</span>
+              <i class="fa-solid fa-chevron-right chevron"></i>
+            </div>
+            <div class="settings-row">
+              <div class="row-icon bg-green"><i class="fa-solid fa-battery-full"></i></div>
+              <span class="row-label">Аккумулятор</span>
+              <span class="row-value">100% (Пиковая)</span>
+              <i class="fa-solid fa-chevron-right chevron"></i>
+            </div>
+          </div>
+
+          <!-- System Specs Modal Details -->
+          <div class="settings-group" id="specs-box">
+            <div class="settings-header">СПЕЦИФИКАЦИЯ ПЕСОЧНИЦЫ</div>
+            <div class="settings-row">
+              <span class="row-label">Имя устройства</span>
+              <span class="row-value">iPhone (Песочница на Android)</span>
+            </div>
+            <div class="settings-row">
+              <span class="row-label">Версия симулятора</span>
+              <span class="row-value">iOS 18.1 (Build 26.2)</span>
+            </div>
+            <div class="settings-row">
+              <span class="row-label">Хост-система</span>
+              <span class="row-value">Android OS (Physical Device)</span>
+            </div>
+            <div class="settings-row">
+              <span class="row-label">Студент</span>
+              <span class="row-value">Юсупов О. К., гр. 100/1</span>
+            </div>
+            <div class="settings-row">
+              <span class="row-label">Руководитель</span>
+              <span class="row-value">Андрющенко Е. П.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP 3: KILLER FEATURE — OS COMPARISON (СРАВНЕНИЕ ОС) -->
+      <div id="app-compare" class="ios-app-window">
+        <div class="app-nav-bar">
+          <button class="app-back-btn"><i class="fa-solid fa-chevron-left"></i> Меню</button>
+          <span class="app-title">Сравнение: Android vs iOS</span>
+        </div>
+        <div class="compare-app-content">
+
+          <!-- Comparison Segmented Control -->
+          <div class="segmented-control">
+            <button class="seg-btn active" data-seg="ui">Элементы UI</button>
+            <button class="seg-btn" data-seg="ux">UX и Навигация</button>
+            <button class="seg-btn" data-seg="arch">Архитектура</button>
+            <button class="seg-btn" data-seg="summary">Итог</button>
+          </div>
+
+          <!-- Segment 1: UI Controls -->
+          <div class="seg-content active" id="seg-ui">
+            <div class="compare-card">
+              <h3>1. Тумблеры (Переключатели)</h3>
+              <div class="demo-split-box">
+                <div class="split-col ios-side">
+                  <div class="badge-tag tag-ios">Apple iOS (HIG)</div>
+                  <label class="ios-switch preview-switch">
+                    <input type="checkbox" checked>
+                    <span class="switch-slider"></span>
+                  </label>
+                  <p class="desc">Плавное зеленое свечение, четкий щелчок, фиксированный минимализм.</p>
+                </div>
+                <div class="split-col android-side">
+                  <div class="badge-tag tag-android">Android (Material 3)</div>
+                  <label class="m3-switch">
+                    <input type="checkbox" checked>
+                    <span class="m3-slider"></span>
+                  </label>
+                  <p class="desc">Массивная пилюля, иконка галочки внутри, акцентный цвет обоев (Material You).</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare-card">
+              <h3>2. Всплывающие уведомления (Диалоги)</h3>
+              <div class="demo-buttons-row">
+                <button class="test-dialog-btn ios" id="show-ios-dialog-btn">Тест диалога iOS</button>
+                <button class="test-dialog-btn android" id="show-android-dialog-btn">Тест диалога Android</button>
+              </div>
+              <p class="desc-small">Нажмите кнопку выше, чтобы увидеть разницу в верстке модальных окон в реальном времени.</p>
+            </div>
+          </div>
+
+          <!-- Segment 2: UX & Navigation -->
+          <div class="seg-content" id="seg-ux">
+            <div class="compare-card">
+              <h3>Принцип жеста «Назад»</h3>
+              <div class="diff-table">
+                <div class="diff-row">
+                  <span class="diff-label">Android</span>
+                  <span class="diff-val">Свайп от любого края экрана (левого или правого). Универсально во всех меню.</span>
+                </div>
+                <div class="diff-row">
+                  <span class="diff-label">iOS</span>
+                  <span class="diff-val">Свайп строго от левого края, либо нажатие на кнопку шеврона в левом верхнем углу.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare-card">
+              <h3>Шторки и Центры Управления</h3>
+              <div class="diff-table">
+                <div class="diff-row">
+                  <span class="diff-label">Android</span>
+                  <span class="diff-val">Единая шторка: уведомления + быстрые круглые кнопки настроек в одном месте.</span>
+                </div>
+                <div class="diff-row">
+                  <span class="diff-label">iOS</span>
+                  <span class="diff-val">Строгое разделение: слева сверху — Центр Уведомлений, справа сверху — Центр Управления.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Segment 3: Architecture -->
+          <div class="seg-content" id="seg-arch">
+            <div class="compare-card">
+              <h3>Техническое сравнение ядер</h3>
+              <table class="academic-table">
+                <thead>
+                  <tr>
+                    <th>Критерий</th>
+                    <th>Android</th>
+                    <th>iOS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ядро ОС</td>
+                    <td>Linux Kernel (AOSP)</td>
+                    <td>Darwin / XNU (Mach)</td>
+                  </tr>
+                  <tr>
+                    <td>Среда исполнения</td>
+                    <td>ART (Ahead-Of-Time)</td>
+                    <td>Нативный машинный код</td>
+                  </tr>
+                  <tr>
+                    <td>Языки разработки</td>
+                    <td>Kotlin, Java</td>
+                    <td>Swift, Objective-C</td>
+                  </tr>
+                  <tr>
+                    <td>Установка ПО</td>
+                    <td>Свободная (APK, RuStore)</td>
+                    <td>Песочница App Store</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Segment 4: Summary -->
+          <div class="seg-content" id="seg-summary">
+            <div class="compare-card highlight">
+              <h3>Вывод для комиссии колледжа</h3>
+              <p>Ни одна из систем не является «абсолютно лучшей»:</p>
+              <ul>
+                <li><strong>Android выигрывает</strong> в свободе выбора, разнообразии ценовых категорий, установке приложений без цензуры и кастомизации.</li>
+                <li><strong>iOS выигрывает</strong> в предсказуемости поведения, безупречной плавности жестов, безопасности закрытой песочницы и долгой поддержке обновлений.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- APP 4: NOTES (ЗАМЕТКИ) -->
+      <div id="app-notes" class="ios-app-window">
+        <div class="app-nav-bar">
+          <button class="app-back-btn"><i class="fa-solid fa-chevron-left"></i> Назад</button>
+          <span class="app-title">Папки</span>
+          <button class="app-action-btn" id="new-note-btn"><i class="fa-solid fa-pen-to-square"></i></button>
+        </div>
+        <div class="notes-content">
+          <div class="notes-search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Поиск">
+          </div>
+          <div class="notes-list" id="notes-list">
+            <div class="note-card">
+              <div class="note-title">План защиты проекта (НППК)</div>
+              <div class="note-preview">1. Введение и актуальность. 2. Демонстрация песочницы на телефоне...</div>
+              <div class="note-date">Сегодня, 14:20</div>
+            </div>
+            <div class="note-card">
+              <div class="note-title">Преимущества песочницы iOS</div>
+              <div class="note-preview">Нативный стек анимаций, работа без модов, прямое сравнение Material Design и HIG...</div>
+              <div class="note-date">Вчера</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP 5: QUIZ (ТЕСТ ПОДБОРА СИСТЕМЫ) -->
+      <div id="app-quiz" class="ios-app-window">
+        <div class="app-nav-bar">
+          <button class="app-back-btn"><i class="fa-solid fa-chevron-left"></i> Назад</button>
+          <span class="app-title">Тест: Что вам подходит?</span>
+        </div>
+        <div class="quiz-content" id="quiz-container">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- MODAL SIMULATORS (For UI comparison) -->
+      <!-- iOS Dialog -->
+      <div id="ios-modal-overlay" class="modal-overlay">
+        <div class="ios-alert-box">
+          <div class="alert-title">Разрешить доступ к песочнице?</div>
+          <div class="alert-desc">Приложение «Песочница iOS» запрашивает симуляцию системных жестов на вашем Android.</div>
+          <div class="alert-actions">
+            <button class="alert-btn cancel" id="close-ios-modal">Запретить</button>
+            <button class="alert-btn primary" id="confirm-ios-modal">Разрешить</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Android Dialog -->
+      <div id="android-modal-overlay" class="modal-overlay">
+        <div class="android-alert-box">
+          <div class="m3-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="m3-title">Запрос разрешения</div>
+          <div class="m3-desc">Предоставить приложению доступ к демонстрационным функциям Material You?</div>
+          <div class="m3-actions">
+            <button class="m3-btn text" id="close-android-modal">Отмена</button>
+            <button class="m3-btn filled" id="confirm-android-modal">Продолжить</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM HOME INDICATOR BAR (SWIPE UP TO GO HOME) -->
+      <div id="home-indicator-bar">
+        <div class="bar-pill"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
